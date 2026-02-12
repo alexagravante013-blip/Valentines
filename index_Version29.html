@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            transition: background 0.8s ease;
+        }
+
+        body.romantic-theme {
+            background: linear-gradient(135deg, #2d1b3d 0%, #1a0f2e 50%, #0d0715 100%);
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 182, 193, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 182, 193, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -50px;
+            left: -50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes subtleFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px rgba(255, 182, 193, 0.5); }
+            50% { text-shadow: 0 0 20px rgba(255, 182, 193, 0.8); }
+        }
+
+        @keyframes teleport {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.2; }
+        }
+
+        @keyframes slideInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+        }
+
+        .greeting-page {
+            background: rgba(30, 30, 46, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 60px 50px;
+            max-width: 600px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(255, 182, 193, 0.05);
+            border: 2px solid rgba(255, 182, 193, 0.3);
+        }
+
+        .greeting-page h1 {
+            font-size: 3em;
+            color: #ffb6c1;
+            margin-bottom: 15px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        .cat-icon {
+            font-size: 4.5em;
+            animation: subtleFloat 3s ease-in-out infinite;
+            display: block;
+            margin: 30px 0;
+            filter: drop-shadow(0 0 10px rgba(255, 182, 193, 0.3));
+        }
+
+        .greeting-page p {
+            font-size: 1.2em;
+            color: #d0a8a8;
+            margin-bottom: 25px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .greeting-page .subtitle {
+            font-size: 1.1em;
+            color: #ffb6c1;
+            margin-bottom: 40px;
+            font-style: italic;
+            font-weight: 500;
+            animation: slideInDown 0.5s ease-in-out;
+            min-height: 30px;
+        }
+
+        .button-container {
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            height: auto;
+        }
+
+        .teleport-button {
+            padding: 15px 40px;
+            font-size: 1.15em;
+            background: linear-gradient(135deg, #ffb6c1 0%, #ff9ab0 100%);
+            color: #2a2a3e;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 25px rgba(255, 182, 193, 0.3);
+            white-space: nowrap;
+            position: relative;
+            z-index: 10;
+        }
+
+        .teleport-button:hover {
+            transform: scale(1.08);
+            box-shadow: 0 12px 35px rgba(255, 182, 193, 0.5);
+        }
+
+        .teleport-button:active {
+            animation: teleport 0.3s ease-in-out;
+        }
+
+        .interest-page {
+            background: rgba(30, 30, 46, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 60px 50px;
+            max-width: 600px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(255, 182, 193, 0.05);
+            border: 2px solid rgba(255, 182, 193, 0.3);
+        }
+
+        .interest-page h2 {
+            font-size: 2.2em;
+            color: #ffb6c1;
+            margin-bottom: 15px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .interest-page p {
+            font-size: 1.1em;
+            color: #d0a8a8;
+            margin-bottom: 40px;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 35px;
+            font-size: 1em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #ffb6c1 0%, #ff9ab0 100%);
+            color: #2a2a3e;
+        }
+
+        .btn-yes:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(255, 182, 193, 0.5);
+        }
+
+        .btn-no {
+            background: rgba(255, 182, 193, 0.1);
+            color: #d0a8a8;
+            border: 2px solid rgba(255, 182, 193, 0.3);
+        }
+
+        .btn-no:hover {
+            background: rgba(255, 182, 193, 0.15);
+            border-color: rgba(255, 182, 193, 0.5);
+        }
+
+        .verification-page {
+            background: rgba(30, 30, 46, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 60px 50px;
+            max-width: 600px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(255, 182, 193, 0.05);
+            border: 2px solid rgba(255, 182, 193, 0.3);
+        }
+
+        .verification-page h2 {
+            font-size: 2em;
+            color: #ffb6c1;
+            margin-bottom: 30px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .verification-page p {
+            font-size: 1.1em;
+            color: #d0a8a8;
+            margin-bottom: 20px;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .question-box {
+            background: rgba(255, 182, 193, 0.08);
+            border: 2px solid rgba(255, 182, 193, 0.2);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .question-text {
+            font-size: 1.1em;
+            color: #ffb6c1;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .text-input {
+            padding: 12px;
+            border: 2px solid rgba(255, 182, 193, 0.3);
+            border-radius: 6px;
+            background: rgba(255, 182, 193, 0.05);
+            color: #d0a8a8;
+            font-size: 1em;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: all 0.3s;
+        }
+
+        .text-input:focus {
+            outline: none;
+            border-color: rgba(255, 182, 193, 0.6);
+            background: rgba(255, 182, 193, 0.1);
+            color: #ffb6c1;
+        }
+
+        .text-input::placeholder {
+            color: #8a7777;
+        }
+
+        .option-btn {
+            padding: 10px 20px;
+            background: rgba(255, 182, 193, 0.1);
+            color: #d0a8a8;
+            border: 2px solid rgba(255, 182, 193, 0.2);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            font-size: 1em;
+            font-weight: 500;
+        }
+
+        .option-btn:hover {
+            background: rgba(255, 182, 193, 0.2);
+            border-color: rgba(255, 182, 193, 0.5);
+        }
+
+        .option-btn.selected {
+            background: linear-gradient(135deg, #ffb6c1 0%, #ff9ab0 100%);
+            color: #2a2a3e;
+            border-color: #ffb6c1;
+        }
+
+        .message-intro-page {
+            background: rgba(30, 30, 46, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 60px 50px;
+            max-width: 750px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(255, 182, 193, 0.05);
+            border: 2px solid rgba(255, 182, 193, 0.3);
+        }
+
+        .message-intro-page h2 {
+            font-size: 2.2em;
+            color: #ffb6c1;
+            margin-bottom: 10px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .message-intro-page .subtitle {
+            font-size: 0.95em;
+            color: #a08080;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .short-message-box {
+            background: rgba(255, 182, 193, 0.08);
+            border: 2px solid rgba(255, 182, 193, 0.2);
+            border-radius: 12px;
+            padding: 40px;
+            margin: 30px 0;
+            text-align: center;
+            color: #d0a8a8;
+            line-height: 1.9;
+            font-size: 1.15em;
+            font-weight: 300;
+        }
+
+        .final-confirm-page {
+            background: rgba(30, 30, 46, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 60px 50px;
+            max-width: 600px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(255, 182, 193, 0.05);
+            border: 2px solid rgba(255, 182, 193, 0.3);
+            position: relative;
+            min-height: 400px;
+        }
+
+        .final-confirm-page h2 {
+            font-size: 2.2em;
+            color: #ffb6c1;
+            margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .final-confirm-page p {
+            font-size: 1.1em;
+            color: #d0a8a8;
+            margin-bottom: 40px;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .letter-icon {
+            font-size: 5em;
+            margin: 30px 0;
+            animation: subtleFloat 3s ease-in-out infinite;
+            display: block;
+            filter: drop-shadow(0 0 10px rgba(255, 182, 193, 0.3));
+        }
+
+        .heart-float {
+            font-size: 3em;
+            margin: 20px 0;
+            animation: heartBeat 1.2s ease-in-out infinite;
+            display: block;
+            filter: drop-shadow(0 0 8px rgba(255, 182, 193, 0.4));
+        }
+
+        .message-page {
+            background: rgba(30, 30, 46, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 60px 50px;
+            max-width: 800px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(255, 182, 193, 0.05);
+            border: 2px solid rgba(255, 182, 193, 0.3);
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        body.romantic-theme .message-page {
+            background: rgba(45, 27, 61, 0.95);
+            border: 2px solid rgba(255, 182, 193, 0.5);
+        }
+
+        .message-page h2 {
+            font-size: 2.5em;
+            color: #ffb6c1;
+            margin-bottom: 30px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            animation: subtleFloat 2.5s ease-in-out infinite;
+        }
+
+        .heart-accent {
+            font-size: 3em;
+            margin: 20px 0;
+            animation: subtleFloat 2s ease-in-out infinite;
+            display: block;
+        }
+
+        .message-box {
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.12) 0%, rgba(255, 182, 193, 0.08) 100%);
+            border: 2px solid rgba(255, 182, 193, 0.3);
+            border-radius: 12px;
+            padding: 40px;
+            margin: 30px 0;
+            min-height: 300px;
+            font-size: 1.15em;
+            color: #d0a8a8;
+            line-height: 2;
+            word-wrap: break-word;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        body.romantic-theme .message-box {
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.15) 0%, rgba(255, 182, 193, 0.1) 100%);
+            border: 2px solid rgba(255, 182, 193, 0.4);
+            color: #e8c1cc;
+        }
+
+        .closing {
+            font-size: 1.4em;
+            color: #ffb6c1;
+            margin-top: 40px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        .decorative-line {
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255, 182, 193, 0.5), transparent);
+            margin: 30px auto;
+        }
+
+        @media (max-width: 600px) {
+            .greeting-page, .interest-page, .verification-page, .message-intro-page, .final-confirm-page, .message-page {
+                padding: 40px 25px;
+            }
+
+            .greeting-page h1 {
+                font-size: 2.2em;
+            }
+
+            .cat-icon {
+                font-size: 3.5em;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .message-box {
+                padding: 25px 20px;
+            }
+
+            .letter-icon {
+                font-size: 4em;
+            }
+        }
+
+        .verification-page::-webkit-scrollbar,
+        .message-intro-page::-webkit-scrollbar,
+        .message-page::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .verification-page::-webkit-scrollbar-track,
+        .message-intro-page::-webkit-scrollbar-track,
+        .message-page::-webkit-scrollbar-track {
+            background: rgba(255, 182, 193, 0.05);
+            border-radius: 10px;
+        }
+
+        .verification-page::-webkit-scrollbar-thumb,
+        .message-intro-page::-webkit-scrollbar-thumb,
+        .message-page::-webkit-scrollbar-thumb {
+            background: rgba(255, 182, 193, 0.3);
+            border-radius: 10px;
+        }
+
+        .verification-page::-webkit-scrollbar-thumb:hover,
+        .message-intro-page::-webkit-scrollbar-thumb:hover,
+        .message-page::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 182, 193, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Page 1: Greeting -->
+        <div class="page active greeting-page">
+            <h1>Happy Valentine's Day Lexaaa!!</h1>
+            <span class="cat-icon">🐱</span>
+            <p>I have something special for you</p>
+            <p class="subtitle" id="motivationalMessage">Click mo yung open beh</p>
+            <div class="button-container">
+                <button class="teleport-button" id="teleportBtn">open</button>
+            </div>
+        </div>
+
+        <!-- Page 2: Interest Question -->
+        <div class="page interest-page">
+            <span class="cat-icon">😼</span>
+            <h2>Hi behhhhh!</h2>
+            <p>So since hindi ako artistic na tao diko na pinilit sarili ko na mag write ng letter. Soooo eto nalang ginawa ko hehehe </p>
+            <p style="font-size: 0.9em; color: #a08080;">So game naba??</p>
+            <div class="button-group" style="margin-top: 50px;">
+                <button class="btn btn-yes" onclick="goToPage(3)">Okayeddd</button>
+            </div>
+        </div>
+
+        <!-- Page 3: Verification Questions -->
+        <div class="page verification-page">
+            <span class="cat-icon">🧐</span>
+            <h2>Perooo waitttt</h2>
+            <p>Ikaw ba talaga si Alexa?? if ikaw yan dapat masagot mo lahat ng tama...</p>
+            
+            <!-- Question 1: Favorite Color -->
+            <div class="question-box">
+                <div class="question-text">Question 1: Anong Fav color nyaaa???</div>
+                <div class="options">
+                    <input type="text" id="answer1" class="text-input" placeholder="Enter your favorite color...">
+                </div>
+            </div>
+
+            <!-- Question 2: Birthday -->
+            <div class="question-box">
+                <div class="question-text">Question 2: Kailan birthday nya????</div>
+                <div class="options">
+                    <input type="text" id="answer2" class="text-input" placeholder="MM/DD/YYYY">
+                </div>
+            </div>
+
+            <!-- Question 3: Ano naman yung emoji na lagi nyang ni rereact sa message ko?-->
+            <div class="question-box">
+                <div class="question-text">Question 3: What is your favorite quick messenger reaction?</div>
+                <div class="options">
+                    <button class="option-btn" onclick="selectReaction(this, 'heart')">❤️ Heart</button>
+                    <button class="option-btn" onclick="selectReaction(this, 'haha')">😂 Haha</button>
+                    <button class="option-btn" onclick="selectReaction(this, 'like')">👍 Like</button>
+                    <button class="option-btn" onclick="selectReaction(this, 'sad')">😢 Sad</button>
+                </div>
+            </div>
+
+            <!-- Question 4: Nickname -->
+            <div class="question-box">
+                <div class="question-text">Question 4: Anong nickname naman binigay ni areksu kay alexaa?? (hint nasa kdrama na pinanood namin)</div>
+                <div class="options">
+                    <input type="text" id="answer4" class="text-input" placeholder="Enter the nickname...">
+                </div>
+            </div>
+
+            <!-- Question 5: Favorite Animal -->
+            <div class="question-box">
+                <div class="question-text">Question 5: Ano favourite animal nya?</div>
+                <div class="options">
+                    <input type="text" id="answer5" class="text-input" placeholder="Enter your favorite animal...">
+                </div>
+            </div>
+
+            <!-- Question 6: Pet Names -->
+            <div class="question-box">
+                <div class="question-text">Question 6: Anong pangalan ng mga anak nya?</div>
+                <div class="options">
+                    <input type="text" id="answer6a" class="text-input" placeholder="First Baby and connected with moon">
+                    <input type="text" id="answer6b" class="text-input" placeholder="Pinaka Clingy and bunso ">
+                    <input type="text" id="answer6c" class="text-input" placeholder="Connected with food and nag mana sa nanay nya">
+                </div>
+            </div>
+            <button class="btn btn-yes" id="submitBtn" style="margin-top: 30px; width: 100%;">Submit Answers</button>
+        </div>
+
+        <!-- Page 4: Short Message Before Main Part -->
+        <div class="page message-intro-page">
+            <span class="cat-icon">✨</span>
+            <h2>Hi Hui Soo !</h2>
+            
+            <div class="short-message-box">
+               So since nakaabot ka dito uhm I hope nagustuhan mo sya even simple lang sya and short wala na me maisip na ibang way kung pano ko gagawin to ihh and since i'm not good rin mag sulat sulat ito nalang ginawa ko since mas comfortable ako here so malapit na tayo sa dulo hehehe  💕
+            </div>
+
+            <button class="btn btn-yes" onclick="goToPage(5)" style="width: 100%; margin-top: 20px;">Continue</button>
+        </div>
+
+        <!-- Page 5: Final Confirmation -->
+        <div class="page final-confirm-page">
+            <span class="letter-icon">💌</span>
+            <h2>Letter</h2>
+            <p>Next na yung letter beh afagfagagagagagsag</p>
+            <p style="font-size: 0.9em; color: #a08080; margin-top: 30px;">wag mo i judge grammar pleasee :< </p>
+            <div class="button-group" style="margin-top: 60px;">
+                <button class="btn btn-yes" onclick="goToFinalMessage()">I'm Ready 💕</button>
+                <button class="btn btn-no" onclick="goToPage(1)">Go Back</button>
+            </div>
+        </div>
+
+        <!-- Page 6: Final Message -->
+        <div class="page message-page">
+            <h2>Happy Valentine's Lexaaa!!💕</h2>
+            <div class="decorative-line"></div>
+            <span class="heart-accent">❤️</span>
+            <div class="message-box" id="customMessage">
+                <!-- Your message will go here -->
+            </div>
+            <div class="decorative-line"></div>
+            <p class="closing">💕</p>
+        </div>
+    </div>
+
+    <script>
+        let teleportCount = 0;
+        const teleportBtn = document.getElementById('teleportBtn');
+        const motivationalMessage = document.getElementById('motivationalMessage');
+        const submitBtn = document.getElementById('submitBtn');
+        let selectedReaction = null;
+        let isMoving = false;
+
+        const motivationalPhrases = [
+            "Sige isa pa",
+            "Kaya mo yan beh",
+            "Go beh",
+            "Sige pa",
+            "Last nalang"
+        ];
+
+        // Get custom message from URL or use default
+        const params = new URLSearchParams(window.location.search);
+        const customMessage = params.get('message') || 
+            "Hi Lexa! First of all, I did all of this not because I felt I had to, but because I love you. You're special to me, and I believe you deserve to feel this kind of appreciation.\n\nHappy Valentine's Day! You know naman how special you are to me; I'm willing to do anything for you, no matter what. You inspire me in everything.\n\nI hope you know just how much you mean to me. Even though I'm aware we might not feel the same way about each other, I'm still happy that we've become close. Whatever comes of my efforts, I'll be happy. No matter what happens, I feel so lucky that I even got the chance to be close to you.\n\nIf the time ever comes that I need to distance myself, always remember that I am your number one supporter. I will always be proud of you, even for the smallest achievements. I don't know what the future holds for us, but please don't pressure yourself. Just keep doing your best and don't mind what others say. If you ever have a problem, I'm always here for you. Happy Valentine's Hui Soo!!!";
+        
+        document.getElementById('customMessage').textContent = customMessage;
+
+        // Teleport button logic
+        teleportBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            teleportCount++;
+            
+            if (teleportCount <= motivationalPhrases.length) {
+                motivationalMessage.textContent = motivationalPhrases[teleportCount - 1];
+                motivationalMessage.style.animation = 'none';
+                setTimeout(() => {
+                    motivationalMessage.style.animation = 'slideInDown 0.5s ease-in-out';
+                }, 10);
+            }
+
+            this.style.animation = 'none';
+            setTimeout(() => {
+                this.style.animation = 'teleport 0.3s ease-in-out';
+            }, 10);
+
+            // Start moving after first click
+            if (teleportCount === 1) {
+                isMoving = true;
+            }
+
+            // Move button after first click and before reaching 6
+            if (isMoving && teleportCount < 6) {
+                moveButtonToRandomPosition();
+            }
+
+            if (teleportCount >= 6) {
+                goToPage(2);
+            }
+        });
+
+        function moveButtonToRandomPosition() {
+            const buttonWidth = 100;
+            const buttonHeight = 50;
+            
+            const padding = 80;
+            const minX = padding;
+            const maxX = window.innerWidth - buttonWidth - padding;
+            const minY = padding;
+            const maxY = window.innerHeight - buttonHeight - padding;
+            
+            const safeMaxX = Math.max(minX + 50, maxX);
+            const safeMaxY = Math.max(minY + 50, maxY);
+            
+            const randomX = Math.random() * (safeMaxX - minX) + minX;
+            const randomY = Math.random() * (safeMaxY - minY) + minY;
+
+            teleportBtn.style.position = 'fixed';
+            teleportBtn.style.left = randomX + 'px';
+            teleportBtn.style.top = randomY + 'px';
+        }
+
+        // Submit button click handler
+        submitBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            submitAnswers();
+        });
+
+        function selectReaction(btn, reaction) {
+            const parent = btn.parentElement;
+            parent.querySelectorAll('.option-btn').forEach(b => {
+                b.classList.remove('selected');
+            });
+            btn.classList.add('selected');
+            selectedReaction = reaction;
+            console.log('Selected reaction:', reaction);
+        }
+
+        function submitAnswers() {
+            const answer1 = document.getElementById('answer1').value.trim();
+            const answer2 = document.getElementById('answer2').value.trim();
+            const answer4 = document.getElementById('answer4').value.trim();
+            const answer5 = document.getElementById('answer5').value.trim();
+            const answer6a = document.getElementById('answer6a').value.trim();
+            const answer6b = document.getElementById('answer6b').value.trim();
+            const answer6c = document.getElementById('answer6c').value.trim();
+
+            console.log('Validating answers...');
+
+            if (!answer1) {
+                alert('Please answer Question 1 - Favorite Color!');
+                return false;
+            }
+            if (!answer2) {
+                alert('Please answer Question 2 - Birthday!');
+                return false;
+            }
+            if (!selectedReaction) {
+                alert('Please select an emoji reaction for Question 3!');
+                return false;
+            }
+            if (!answer4) {
+                alert('Please answer Question 4 - Nickname!');
+                return false;
+            }
+            if (!answer5) {
+                alert('Please answer Question 5 - Favorite Animal!');
+                return false;
+            }
+            if (!answer6a) {
+                alert('Please answer Question 6a - First Pet Name!');
+                return false;
+            }
+            if (!answer6b) {
+                alert('Please answer Question 6b - Second Pet Name!');
+                return false;
+            }
+            if (!answer6c) {
+                alert('Please answer Question 6c - Third Pet Name!');
+                return false;
+            }
+
+            console.log('All answers validated! Moving to page 4');
+            goToPage(4);
+            return false;
+        }
+
+        function goToFinalMessage() {
+            document.body.classList.add('romantic-theme');
+            goToPage(6);
+        }
+
+        function goToPage(pageNumber) {
+            console.log('Going to page:', pageNumber);
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            const allPages = Array.from(pages);
+            if (pageNumber > 0 && pageNumber <= allPages.length) {
+                allPages[pageNumber - 1].classList.add('active');
+                console.log('Page', pageNumber, 'is now active');
+            } else {
+                console.log('Invalid page number:', pageNumber);
+            }
+        }
+    </script>
+</body>
+</html>
