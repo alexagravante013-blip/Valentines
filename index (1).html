@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 50%, #ff69b4 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Page 1 - Greeting */
+        .greeting-page {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 60px 40px;
+            max-width: 600px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            border: 5px solid #ff1493;
+        }
+
+        .greeting-page h1 {
+            font-size: 3.5em;
+            color: #ff1493;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 0px #ffb6d9;
+            animation: bounce 1s infinite;
+        }
+
+        .cat-emoji {
+            font-size: 5em;
+            animation: float 2s infinite;
+            display: block;
+            margin: 20px 0;
+        }
+
+        .greeting-page p {
+            font-size: 1.5em;
+            color: #ff1493;
+            margin-bottom: 30px;
+        }
+
+        .button-container {
+            position: relative;
+            width: 300px;
+            height: 100px;
+            margin: 0 auto;
+        }
+
+        .moving-button {
+            position: absolute;
+            padding: 15px 30px;
+            font-size: 1.3em;
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            white-space: nowrap;
+        }
+
+        .moving-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .click-counter {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5em;
+            color: #ff1493;
+            font-weight: bold;
+        }
+
+        /* Page 2 - Confirmation */
+        .confirmation-page {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 60px 40px;
+            max-width: 600px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            border: 5px solid #ff1493;
+        }
+
+        .confirmation-page h2 {
+            font-size: 2em;
+            color: #ff1493;
+            margin-bottom: 20px;
+        }
+
+        .confirmation-page p {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 20, 147, 0.4);
+        }
+
+        .btn-no {
+            background: #ddd;
+            color: #333;
+        }
+
+        .btn-no:hover {
+            background: #ccc;
+        }
+
+        /* Page 3 - Are You Sure */
+        .sure-page {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 60px 40px;
+            max-width: 600px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            border: 5px solid #ff1493;
+        }
+
+        .sure-page h2 {
+            font-size: 2.5em;
+            color: #ff1493;
+            margin-bottom: 30px;
+            animation: bounce 0.8s infinite;
+        }
+
+        .cat-thinking {
+            font-size: 6em;
+            margin: 20px 0;
+        }
+
+        /* Page 4 - Final Confirmation */
+        .final-page {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 60px 40px;
+            max-width: 600px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            border: 5px solid #ff1493;
+        }
+
+        .final-page h2 {
+            font-size: 2.2em;
+            color: #ff1493;
+            margin-bottom: 20px;
+        }
+
+        /* Page 5 - Message */
+        .message-page {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 60px 40px;
+            max-width: 700px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            border: 5px solid #ff1493;
+        }
+
+        .message-page h2 {
+            font-size: 2.5em;
+            color: #ff1493;
+            margin-bottom: 30px;
+            animation: float 2s infinite;
+        }
+
+        .heart-rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 2em;
+            animation: fall 3s infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .message-box {
+            background: linear-gradient(135deg, #fff9e6 0%, #ffe6f0 100%);
+            border: 3px solid #ff1493;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px 0;
+            min-height: 200px;
+            font-size: 1.1em;
+            color: #333;
+            line-height: 1.8;
+            word-wrap: break-word;
+            font-style: italic;
+        }
+
+        .happy-ending {
+            font-size: 4em;
+            margin: 30px 0;
+            animation: float 1.5s infinite;
+        }
+
+        .paw-prints {
+            font-size: 2em;
+            letter-spacing: 10px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 600px) {
+            .greeting-page, .confirmation-page, .sure-page, .final-page, .message-page {
+                padding: 40px 20px;
+            }
+
+            .greeting-page h1 {
+                font-size: 2.5em;
+            }
+
+            .cat-emoji {
+                font-size: 4em;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="heart-rain" id="heartRain"></div>
+
+    <!-- Page 1: Happy Valentine's Greeting -->
+    <div class="page active greeting-page">
+        <h1>Happy Valentine's Day! 💕</h1>
+        <span class="cat-emoji">😻</span>
+        <p>I have something special for you...</p>
+        <p style="font-size: 0.9em; color: #666;">Click the button below if you're brave enough to see it! 😼</p>
+        <div class="button-container">
+            <button class="moving-button" id="secretButton">Click Me! 🎀</button>
+            <div class="click-counter">Clicks: <span id="clickCount">0</span>/10</div>
+        </div>
+    </div>
+
+    <!-- Page 2: Confirmation -->
+    <div class="page confirmation-page">
+        <h2>Wait! 😸</h2>
+        <span class="cat-emoji">😺</span>
+        <p>Are you REALLY interested to read this message? This could be important...</p>
+        <div class="button-group">
+            <button class="btn btn-yes" onclick="goToPage(3)">Yes! Tell me! 💖</button>
+            <button class="btn btn-no" onclick="goToPage(1)">Maybe Later...</button>
+        </div>
+    </div>
+
+    <!-- Page 3: Are You Sure? -->
+    <div class="page sure-page">
+        <h2>Are you SURE? 🐱</h2>
+        <span class="cat-thinking">😹</span>
+        <p style="font-size: 1.3em; color: #ff1493; margin: 30px 0;">Once you proceed, there's no turning back...</p>
+        <div class="button-group">
+            <button class="btn btn-yes" onclick="goToPage(4)">I'm Sure! 💕</button>
+            <button class="btn btn-no" onclick="goToPage(1)">Take me back...</button>
+        </div>
+    </div>
+
+    <!-- Page 4: Final Confirmation -->
+    <div class="page final-page">
+        <h2>One Last Thing... 😻</h2>
+        <span class="cat-emoji">😻</span>
+        <p style="font-size: 1.2em; margin: 30px 0;">Do you want to proceed to see my message?</p>
+        <div class="button-group">
+            <button class="btn btn-yes" onclick="goToPage(5)">YES! Let's Go! 💘</button>
+            <button class="btn btn-no" onclick="goToPage(1)">Nevermind...</button>
+        </div>
+    </div>
+
+    <!-- Page 5: Final Message -->
+    <div class="page message-page">
+        <h2>You Made It! 🎉</h2>
+        <span class="happy-ending">😻💕😻</span>
+        <div class="message-box" id="customMessage">
+            <!-- Your custom message will appear here -->
+        </div>
+        <div class="paw-prints">🐾 🐾 🐾</div>
+        <p style="font-size: 1.3em; color: #ff1493; margin-top: 30px;">Love you! 💖</p>
+    </div>
+
+    <script>
+        let clickCount = 0;
+        const requiredClicks = 10;
+        const secretButton = document.getElementById('secretButton');
+        const clickCountSpan = document.getElementById('clickCount');
+
+        // Get custom message from URL or use default
+        const params = new URLSearchParams(window.location.search);
+        const customMessage = params.get('message') || 
+            "You are amazing! Thank you for being the best! You make me smile every single day. I love your laugh, your kindness, and everything about you. You're my favorite person in the world. Happy Valentine's Day to the one I love! 💕😻";
+        
+        document.getElementById('customMessage').textContent = customMessage;
+
+        // Moving button logic
+        secretButton.addEventListener('click', function(e) {
+            clickCount++;
+            clickCountSpan.textContent = clickCount;
+
+            if (clickCount >= requiredClicks) {
+                goToPage(2);
+                return;
+            }
+
+            // Move button to random position
+            const maxX = window.innerWidth - secretButton.offsetWidth - 20;
+            const maxY = window.innerHeight - secretButton.offsetHeight - 20;
+            
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+
+            secretButton.style.position = 'fixed';
+            secretButton.style.left = randomX + 'px';
+            secretButton.style.top = randomY + 'px';
+
+            // Create heart animation on click
+            createHeart(e.clientX, e.clientY);
+        });
+
+        // Prevent button from going off screen on hover
+        secretButton.addEventListener('mouseover', function() {
+            if (clickCount < requiredClicks) {
+                const maxX = window.innerWidth - this.offsetWidth - 20;
+                const maxY = window.innerHeight - this.offsetHeight - 20;
+                
+                const randomX = Math.random() * maxX;
+                const randomY = Math.random() * maxY;
+
+                this.style.position = 'fixed';
+                this.style.left = randomX + 'px';
+                this.style.top = randomY + 'px';
+            }
+        });
+
+        function goToPage(pageNumber) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            const allPages = Array.from(pages);
+            if (pageNumber > 0 && pageNumber <= allPages.length) {
+                allPages[pageNumber - 1].classList.add('active');
+            }
+        }
+
+        function createHeart(x, y) {
+            const heart = document.createElement('div');
+            heart.textContent = '💕';
+            heart.style.position = 'fixed';
+            heart.style.left = x + 'px';
+            heart.style.top = y + 'px';
+            heart.style.fontSize = '2em';
+            heart.style.pointerEvents = 'none';
+            heart.style.animation = 'fall 1.5s forwards';
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 1500);
+        }
+
+        // Generate falling hearts
+        function generateHearts() {
+            const heartRain = document.getElementById('heartRain');
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.textContent = '💕';
+                heart.style.position = 'absolute';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.top = '-50px';
+                heart.style.fontSize = Math.random() * 1.5 + 1.5 + 'em';
+                heart.style.animation = 'fall ' + (Math.random() * 3 + 3) + 's linear forwards';
+                heart.style.opacity = Math.random() * 0.5 + 0.5;
+                heart.style.pointerEvents = 'none';
+                heartRain.appendChild(heart);
+
+                setTimeout(() => heart.remove(), 6000);
+            }, 300);
+        }
+
+        generateHearts();
+    </script>
+</body>
+</html>
