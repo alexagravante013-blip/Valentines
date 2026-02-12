@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💕 Happy Valentine's Day, Lexaa! 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffc0cb, #ff69b4, #ff1493);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            animation: backgroundShift 8s ease infinite;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { background: linear-gradient(135deg, #ffc0cb, #ff69b4, #ff1493); }
+            50% { background: linear-gradient(135deg, #ffb6c1, #ff69b4, #ff1493); }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(255, 20, 147, 0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+            text-align: center;
+            animation: slideIn 0.6s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #ff1493;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            animation: heartbeat 1.5s ease infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .heart {
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            border: none;
+            background: #ffb6d9;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .tab-btn:hover {
+            background: #ff69b4;
+            transform: scale(1.05);
+        }
+
+        .tab-btn.active {
+            background: #ff1493;
+            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.4);
+        }
+
+        .content {
+            display: none;
+        }
+
+        .content.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Letter Section */
+        .letter-section {
+            text-align: left;
+        }
+
+        .letter-section h2 {
+            color: #ff1493;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .letter-box {
+            background: linear-gradient(135deg, #ffe4e1, #fff0f5);
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid #ff1493;
+            min-height: 300px;
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .letter-box::before {
+            content: "💌 ";
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ffb6d9;
+            border-radius: 10px;
+            font-size: 1em;
+            font-family: 'Arial', sans-serif;
+            resize: vertical;
+            min-height: 150px;
+            margin-top: 10px;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #ff1493;
+            box-shadow: 0 0 10px rgba(255, 20, 147, 0.2);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+            flex: 1;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 20, 147, 0.4);
+        }
+
+        .btn-secondary {
+            background: #ffb6d9;
+            color: white;
+            flex: 1;
+        }
+
+        .btn-secondary:hover {
+            background: #ff69b4;
+            transform: translateY(-3px);
+        }
+
+        /* Quiz Section */
+        .quiz-section h2 {
+            color: #ff1493;
+            margin-bottom: 20px;
+        }
+
+        .question-container {
+            background: linear-gradient(135deg, #ffe4e1, #fff0f5);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option {
+            background: white;
+            padding: 12px;
+            border: 2px solid #ffb6d9;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1em;
+        }
+
+        .option:hover {
+            background: #fff0f5;
+            border-color: #ff1493;
+            transform: translateX(5px);
+        }
+
+        .option.selected {
+            background: #ff69b4;
+            color: white;
+            border-color: #ff1493;
+        }
+
+        .option.correct {
+            background: #90EE90;
+            color: white;
+            border-color: #228B22;
+        }
+
+        .option.incorrect {
+            background: #FFB6C6;
+            color: white;
+            border-color: #ff1493;
+        }
+
+        .quiz-results {
+            background: linear-gradient(135deg, #fff0f5, #ffe4e1);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .quiz-results.show {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .score {
+            font-size: 2em;
+            color: #ff1493;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .message {
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            pointer-events: none;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 2em;
+            animation: fall 3s linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><span class="heart">💕</span> Happy Valentine's Day <span class="heart">💕</span></h1>
+            <p style="color: #ff69b4; font-size: 1.3em; margin-top: 10px;">Lexaa</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('letter')">💌 Love Letter</button>
+            <button class="tab-btn" onclick="switchTab('quiz')">🎮 Quiz Game</button>
+        </div>
+
+        <!-- Love Letter Tab -->
+        <div id="letter" class="content active letter-section">
+            <h2>Write Your Message</h2>
+            <p style="color: #666; margin-bottom: 15px;">Create a special message for Lexaa:</p>
+            <textarea id="messageInput" placeholder="Dear Lexaa, I want to tell you..."></textarea>
+            <div class="button-group">
+                <button class="btn-primary" onclick="saveLetter()">Save & Display</button>
+                <button class="btn-secondary" onclick="clearLetter()">Clear</button>
+            </div>
+            <div id="letterDisplay" class="letter-box hidden"></div>
+        </div>
+
+        <!-- Quiz Tab -->
+        <div id="quiz" class="content quiz-section">
+            <h2>🎮 How Well Do You Know Lexaa?</h2>
+            <p style="color: #666; margin-bottom: 20px;">Test your love knowledge with this fun quiz!</p>
+            <div id="quizContainer"></div>
+            <div id="quizResults" class="quiz-results"></div>
+            <button class="btn-primary" id="submitBtn" onclick="submitQuiz()">Submit Answers</button>
+            <button class="btn-secondary" id="restartBtn" onclick="restartQuiz()" style="display: none;">Try Again</button>
+        </div>
+    </div>
+
+    <script>
+        // Sample quiz questions (you can customize these!)
+        const quizQuestions = [
+            {
+                question: "What's Lexaa's favorite color?",
+                options: ["Pink", "Blue", "Purple", "Green"],
+                correct: 0
+            },
+            {
+                question: "What makes Lexaa smile the most?",
+                options: ["Jokes", "Compliments", "Your presence", "Surprises"],
+                correct: 2
+            },
+            {
+                question: "What's Lexaa's dream date?",
+                options: ["Movie", "Dinner", "Beach walk", "Stargazing"],
+                correct: 3
+            },
+            {
+                question: "How many days until you'll love Lexaa?",
+                options: ["Forever", "Just kidding, already forever", "Eternity", "All of the above"],
+                correct: 3
+            }
+        ];
+
+        let userAnswers = [];
+
+        function switchTab(tab) {
+            // Hide all content
+            document.getElementById('letter').classList.remove('active');
+            document.getElementById('quiz').classList.remove('active');
+
+            // Remove active state from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+
+            // Show selected content
+            document.getElementById(tab).classList.add('active');
+            event.target.classList.add('active');
+
+            if (tab === 'quiz') {
+                initializeQuiz();
+            }
+        }
+
+        function saveLetter() {
+            const message = document.getElementById('messageInput').value.trim();
+            if (message === '') {
+                alert('Please write a message first! 💕');
+                return;
+            }
+
+            const letterDisplay = document.getElementById('letterDisplay');
+            letterDisplay.innerHTML = message.replace(/\n/g, '<br>');
+            letterDisplay.classList.remove('hidden');
+
+            // Create downloadable content
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(`Happy Valentine's Day, Lexaa!\n\n${message}`));
+            element.setAttribute('download', 'love_letter_for_lexaa.txt');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+
+        function clearLetter() {
+            document.getElementById('messageInput').value = '';
+            document.getElementById('letterDisplay').classList.add('hidden');
+        }
+
+        function initializeQuiz() {
+            userAnswers = new Array(quizQuestions.length).fill(null);
+            const quizContainer = document.getElementById('quizContainer');
+            quizContainer.innerHTML = '';
+
+            quizQuestions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question-container';
+                questionDiv.innerHTML = `
+                    <div class="question">Q${index + 1}: ${q.question}</div>
+                    <div class="options">
+                        ${q.options.map((option, optIndex) => `
+                            <div class="option" onclick="selectAnswer(${index}, ${optIndex})">
+                                ${option}
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                quizContainer.appendChild(questionDiv);
+            });
+        }
+
+        function selectAnswer(questionIndex, optionIndex) {
+            userAnswers[questionIndex] = optionIndex;
+            const options = document.querySelectorAll(`.question-container`)[questionIndex].querySelectorAll('.option');
+            options.forEach((opt, idx) => {
+                opt.classList.remove('selected');
+                if (idx === optionIndex) {
+                    opt.classList.add('selected');
+                }
+            });
+        }
+
+        function submitQuiz() {
+            if (userAnswers.includes(null)) {
+                alert('Please answer all questions! 💕');
+                return;
+            }
+
+            let score = 0;
+            quizQuestions.forEach((q, index) => {
+                if (userAnswers[index] === q.correct) {
+                    score++;
+                }
+                const options = document.querySelectorAll(`.question-container`)[index].querySelectorAll('.option');
+                options.forEach((opt, idx) => {
+                    opt.style.pointerEvents = 'none';
+                    if (idx === q.correct) {
+                        opt.classList.add('correct');
+                    } else if (idx === userAnswers[index] && userAnswers[index] !== q.correct) {
+                        opt.classList.add('incorrect');
+                    }
+                });
+            });
+
+            const resultsDiv = document.getElementById('quizResults');
+            let message = '';
+            if (score === 4) {
+                message = "Perfect score! You know Lexaa so well! 💕💕💕";
+            } else if (score === 3) {
+                message = "Great job! You know Lexaa really well! 💕💕";
+            } else if (score === 2) {
+                message = "Nice effort! You know Lexaa! 💕";
+            } else {
+                message = "It's okay! Every day you'll learn more about Lexaa! 💕";
+            }
+
+            resultsDiv.innerHTML = `
+                <div class="score">${score}/${quizQuestions.length}</div>
+                <div class="message">${message}</div>
+            `;
+            resultsDiv.classList.add('show');
+            document.getElementById('submitBtn').style.display = 'none';
+            document.getElementById('restartBtn').style.display = 'block';
+        }
+
+        function restartQuiz() {
+            document.getElementById('quizResults').classList.remove('show');
+            document.getElementById('submitBtn').style.display = 'block';
+            document.getElementById('restartBtn').style.display = 'none';
+            initializeQuiz();
+        }
+
+        // Create floating hearts
+        function createFloatingHearts() {
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.textContent = '💕';
+                heart.style.left = Math.random() * 100 + '%';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 3000);
+            }, 500);
+        }
+
+        createFloatingHearts();
+    </script>
+</body>
+</html>
